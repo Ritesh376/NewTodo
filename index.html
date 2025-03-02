@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="TODO.css">
 </head>
 <body>
   <h1>PLAN YOUR DAY</h1>
   <main>
   <input type="text" id="todoInput" placeholder="Enter your todo item...">
   
-  <button onclick="addTodo()">Add Todo</button>
+  <button onclick="check()">Add Todo</button>
 </main>
 
 
@@ -20,17 +20,31 @@
 
   
   <script>
+    function check() {
+      let inputElement = document.getElementById("todoInput");
+      let value = inputElement.value.trim(); 
+      
+      if (value === "") {
+        alert("❌ Please enter a valid todo!");
+        return; 
+      }
+
+      addTodo(); 
+    }
     function addTodo() {
       const inputElement = document.getElementById('todoInput');
       const value = inputElement.value;
       const spanEL = document.createElement("span");
       const buttonEl = document.createElement("button");
-      buttonEl.innerHTML = "Done";
+      buttonEl.innerHTML = " Mark As Done";
       const deletetodo= document.createElement("delete")
       deletetodo.innerHTML = "Delete";
       buttonEl.onclick = function() {
-        this.innerHTML = "✅"; 
-        
+        document.querySelector("span").style.textDecoration = "line-through"; 
+        this.innerHTML = "Completed"; 
+        this.style.color="Grey";
+        this.style.backgroundColor = "transparent";
+        this.disabled = true;
          
       };
       deletetodo.onclick = function() {
